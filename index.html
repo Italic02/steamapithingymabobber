@@ -9,8 +9,9 @@
     <p id="status">Status: Ready</p>
 
     <script>
-        // Paste your live ngrok URL here (Make sure there is NO slash / at the end)
-        const TUNNEL_URL = "https://ngrok-free.app"; 
+        // CRITICAL: Replace this with your actual, unique ngrok URL from your terminal window!
+        // It should look like: "https://a1b2-34-56-78.ngrok-free.app"
+        const TUNNEL_URL = "https://shanty-disengage-stilt.ngrok-free.dev "; 
 
         document.getElementById('sendBtn').addEventListener('click', async () => {
             const statusEl = document.getElementById('status');
@@ -19,7 +20,10 @@
             try {
                 const response = await fetch(TUNNEL_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true' // Fixed: placed inside headers and closed the quote
+                    }, // Added missing comma below
                     body: JSON.stringify({ action: "Button Pushed!" })
                 });
 
