@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Web to Python Button</title>
+    <title>annoy me</title>
 </head>
 <body>
 
-    <button id="sendBtn" style="padding: 10px 20px; font-size: 16px;">Trigger Python Script</button>
+    <button id="sendBtn" style="padding: 10px 20px; font-size: 16px;">play airhorn sound on my computer</button>
     <p id="status">Status: Ready</p>
 
     <script>
@@ -15,7 +15,7 @@
 
         document.getElementById('sendBtn').addEventListener('click', async () => {
             const statusEl = document.getElementById('status');
-            statusEl.innerText = "Sending payload through tunnel...";
+            statusEl.innerText = "annoying process in motion";
 
             try {
                 const response = await fetch(TUNNEL_URL, {
@@ -28,10 +28,10 @@
                 });
 
                 const data = await response.json();
-                statusEl.innerText = `Success! Server says: ${data.message}`;
+                statusEl.innerText = `you playyed the sound, good job`;
             } catch (err) {
                 console.error(err);
-                statusEl.innerText = "Error: tunnel probably... idk man. i barely understand how this works";
+                statusEl.innerText = "Error: tunnel probably fucked up, idk man. i barely understand how this works";
             }
         });
     </script>
