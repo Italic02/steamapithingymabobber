@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web to Python Button</title>
+</head>
+<body>
 
+    <button id="sendBtn" style="padding: 10px 20px; font-size: 16px;">Trigger Python Script</button>
+    <p id="status">Status: Ready</p>
+
+    <script>
+        // Paste your live ngrok URL here (Make sure there is NO slash / at the end)
+        const TUNNEL_URL = "https://ngrok-free.app"; 
+
+        document.getElementById('sendBtn').addEventListener('click', async () => {
+            const statusEl = document.getElementById('status');
+            statusEl.innerText = "Sending payload through tunnel...";
+
+            try {
+                const response = await fetch(TUNNEL_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: "Button Pushed!" })
+                });
+
+                const data = await response.json();
+                statusEl.innerText = `Success! Server says: ${data.message}`;
+            } catch (err) {
+                console.error(err);
+                statusEl.innerText = "Error: Could not reach Python app via tunnel.";
+            }
+        });
+    </script>
+
+</body>
+</html>
